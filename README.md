@@ -42,36 +42,36 @@ Things you may want to cover:
 
 - has_many :items
 - has_many :orders
-- has_many :delivery
 
 
 
 ## items テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| name             | string     | null: false                    |
-| description      | text       | null: false                    |
-| category         | string     | null: false                    |
-| condition        | string     | null: false                    |
-| delivery_charge  | integer    | null: false                    |
-| delivery_area    | string     | null: false                    |
-| delivery_days    | integer    | null: false                    |
-| item_price       | integer    | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| description        | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
+| delivery_area_id   | integer    | null: false                    |
+| delivery_day_id    | integer    | null: false                    |
+| item_price         | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_one    :order
-- has_one    :delivery
+
+
 
 ## orders テーブル
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| user_id      | references | null: false, foreign_key: true |
-| item_id      | references | null: false, foreign_key: true |
+| user         | references | null: false, foreign_key: true |
+| item         | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -80,25 +80,20 @@ Things you may want to cover:
 - has_one    :delivery
 
 
+
 ## delivery テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| card_number      | integer    | null: false                    |
-| card_date        | date       | null: false                    |
-| card_security    | integer    | null: false                    |
-| post_code        | integer    | null: false                    |
-| country          | string     | null: false                    |
-| town             | string     | null: false                    |
-| address          | integer    | null: false                    |
-| house_name       | string     |                                |
-| phone_number     | integer    | null: false                    |
-| order_id         | references | null: false, foreign_key: true |
-| user_id          | references | null: false, foreign_key: true |
-| item_id          | references | null: false, foreign_key: true |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| post_code         | string     | null: false                    |
+| delivery_area_id  | integer    | null: false                    |
+| town              | string     | null: false                    |
+| address           | string     | null: false                    |
+| house_name        | string     |                                |
+| phone_number      | string     | null: false                    |
+| order             | references | null: false, foreign_key: true |
+
 
 ### Association
 
-- belongs_to :user
 - belongs_to :order
-- belongs_to :item
