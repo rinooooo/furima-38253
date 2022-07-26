@@ -9,6 +9,8 @@ class Item < ApplicationRecord
   validates :delivery_day_id, presence: true
   validates :item_price, presence: true
 
+  belongs_to :user
+
 
 
 end
