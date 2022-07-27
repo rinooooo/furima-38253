@@ -130,37 +130,36 @@
       <% if @items.length > 0 %>
       <% @items.each do |item| %>
         <li class='list'>
-          <% link_to root_path %>
-          <%# //商品詳細ページへのパスに変更 %>
-          <div class='item-img-content'>
-            <%= image_tag item.image.variant(resize: '231.31x231.31'), class: "item-img" if item.image.attached? %>
+          <%= link_to (item_path(item.id)) do %>
+            <div class='item-img-content'>
+              <%= image_tag item.image.variant(resize: '231.31x231.31'), class: "item-img" if item.image.attached? %>
             <%# 商品が売れていればsold outを表示しましょう %>
             <%# unless item.order = nil %>
-            <div class='sold-out'>
+            <%#<div class='sold-out'>
               <span>Sold Out!!</span>
             </div>
             <%# end %>
             <%# //商品が売れていればsold outを表示しましょう %>
-          </div>
-          <div class='item-info'>
-            <h3 class='item-name'>
-              <%= item.name %>
-            </h3>
-            <div class='item-price'>
-              <span><%= item.item_price %>円<br><%= item.deliveryCharge.name %></span>
-              <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
-                <span class='star-count'>0</span>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.name %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.item_price %>円<br><%= item.deliveryCharge.name %></span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         </li>
       <% end %>
     
       <% else %>
       <li class='list'>
-        <% link_to root_path %>
-        <%# //商品詳細ページへのパスに変更 %>
+        <% link_to root_path do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -174,6 +173,7 @@
             </div>
           </div>
         </div>
+        <% end %>
       </li>
       <% end %>
     </ul>
