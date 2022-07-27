@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    redirect_to root_path unless user_signed_in?
   end
 
   def create
@@ -25,6 +24,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def update
