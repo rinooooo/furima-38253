@@ -24,9 +24,9 @@ RSpec.describe DeliveryCard, type: :model do
         expect(@delivery_card.errors.full_messages).to include("Post code can't be blank")
       end
       it '郵便番号が「3桁ハイフン4桁」の半角文字列でないと購入できない' do
-        @delivery_card.post_code = "1111111"
+        @delivery_card.post_code = '1111111'
         @delivery_card.valid?
-        expect(@delivery_card.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@delivery_card.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
 
       it '都道府県がないと購入できない' do
@@ -55,7 +55,7 @@ RSpec.describe DeliveryCard, type: :model do
       it '電話番号は10桁または11桁の半角数値でないと購入できない' do
         @delivery_card.phone_number = '111111111'
         @delivery_card.valid?
-        expect(@delivery_card.errors.full_messages).to include("Phone number is invalid. exclude hyphen(-)")
+        expect(@delivery_card.errors.full_messages).to include('Phone number is invalid. exclude hyphen(-)')
       end
 
       it 'トークンがないと購入できない' do
@@ -66,5 +66,3 @@ RSpec.describe DeliveryCard, type: :model do
     end
   end
 end
-
-

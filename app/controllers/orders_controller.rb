@@ -3,9 +3,7 @@ class OrdersController < ApplicationController
   before_action :find_params, only: [:index, :create]
 
   def index
-    if current_user.id == @item.user.id || @item.order.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user.id || @item.order.present?
     @delivery_card = DeliveryCard.new
   end
 
@@ -20,10 +18,12 @@ class OrdersController < ApplicationController
     end
   end
 
-
   private
+
   def order_params
-    params.require(:delivery_card).permit(:post_code, :delivery_area_id, :town, :address, :house_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+    params.require(:delivery_card).permit(:post_code, :delivery_area_id, :town, :address, :house_name, :phone_number).merge(
+      user_id: current_user.id, item_id: @item.id, token: params[:token]
+    )
   end
 
   def find_params
@@ -31,12 +31,11 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.item_price,
       card: order_params[:token],
       currency: 'jpy'
     )
   end
-
 end
