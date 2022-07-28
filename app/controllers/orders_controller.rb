@@ -2,7 +2,9 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    redirect_to root_path unless current_user.id != @item.user.id
     @item = Item.find(params[:item_id])
+    @delivery_card = DeliveryCard.new
   end
 
   def create
@@ -21,5 +23,6 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:delivery_card).permit(:post_code, :delivery_area_id, :town, :address, :house_name, :phone_number, :card_number, :card_date_month, :card_date_year, :card_security).merge(user_id: current_user.id, item_id: @item.id)
   end
+
 
 end
