@@ -2,7 +2,11 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @item = Item.find(params[:item.id])
+    @item = Item.find(params[:item_id])
+  end
+
+  def create
+    @item = Item.find(params[:item_id])
     @delivery_card = DeliveryCard.new(order_params)
     if @delivery_card.valid?
       @delivery_card.save
@@ -11,6 +15,7 @@ class OrdersController < ApplicationController
       render :index
     end
   end
+
 
   private
   def order_params
