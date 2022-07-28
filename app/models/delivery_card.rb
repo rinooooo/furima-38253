@@ -7,8 +7,6 @@ class DeliveryCard
     validates :town
     validates :address
     validates :phone_number, format: {with: /\A[0-9]{10,11}\z/, message: "is invalid. exclude hyphen(-)"}
-    validates :user_id
-    validates :item_id
   end
   validates :delivery_area_id, numericality: {other_than: 0, message: "can't be blank"}
   validates :token, presence: true
