@@ -78,6 +78,8 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to :item
 - has_one    :delivery
+- has_one    :card
+
 
 
 
@@ -91,6 +93,21 @@ Things you may want to cover:
 | address           | string     | null: false                    |
 | house_name        | string     |                                |
 | phone_number      | string     | null: false                    |
+| order             | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belongs_to :order
+
+
+## cards テーブル
+
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| card_number       | integer    | null: false                    |
+| card_date         | date       | null: false                    |
+| card_security     | integer    | null: false                    |
 | order             | references | null: false, foreign_key: true |
 
 
