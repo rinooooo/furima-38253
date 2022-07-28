@@ -106,8 +106,8 @@ Things you may want to cover:
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
 | card_number       | integer    | null: false                    |
-| card_date_month   | date       | null: false                    |
-| card_date_year    | date       | null: false                    |
+| card_date_month   | integer    | null: false                    |
+| card_date_year    | integer    | null: false                    |
 | card_security     | integer    | null: false                    |
 | order             | references | null: false, foreign_key: true |
 
