@@ -78,6 +78,8 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to :item
 - has_one    :delivery
+- has_one    :card
+
 
 
 
@@ -90,7 +92,7 @@ Things you may want to cover:
 | town              | string     | null: false                    |
 | address           | string     | null: false                    |
 | house_name        | string     |                                |
-| phone_number      | string     | null: false                    |
+| phone_number      | integer    | null: false                    |
 | order             | references | null: false, foreign_key: true |
 
 
