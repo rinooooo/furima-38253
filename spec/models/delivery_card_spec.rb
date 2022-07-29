@@ -35,6 +35,12 @@ RSpec.describe DeliveryCard, type: :model do
         expect(@delivery_card.errors.full_messages).to include("Delivery area can't be blank")
       end
 
+      it '都道府県でーーーーが選択されている時は購入できない' do
+        @delivery_card.delivery_area_id = '0'
+        @delivery_card.valid?
+        expect(@delivery_card.errors.full_messages).to include("Delivery area can't be blank")
+      end
+
       it '市区町村がないと購入できない' do
         @delivery_card.town = ''
         @delivery_card.valid?
@@ -52,16 +58,37 @@ RSpec.describe DeliveryCard, type: :model do
         @delivery_card.valid?
         expect(@delivery_card.errors.full_messages).to include("Phone number can't be blank")
       end
-      it '電話番号は10桁または11桁の半角数値でないと購入できない' do
+      it '電話番号が9桁以下だと購入できない' do
         @delivery_card.phone_number = '111111111'
         @delivery_card.valid?
-        expect(@delivery_card.errors.full_messages).to include('Phone number is invalid. exclude hyphen(-)')
+        expect(@delivery_card.errors.full_messages).to include('Phone number is invalid.')
+      end
+      it '電話番号が12桁以上だと購入できない' do
+        @delivery_card.phone_number = '111111111111'
+        @delivery_card.valid?
+        expect(@delivery_card.errors.full_messages).to include('Phone number is invalid.')
+      end
+      it '電話番号に半角数字以外が含まれている場合購入できない' do
+        @delivery_card.phone_number = '11111aaaaa'
+        @delivery_card.valid?
+        expect(@delivery_card.errors.full_messages).to include('Phone number is invalid.')
       end
 
       it 'トークンがないと購入できない' do
         @delivery_card.token = ''
         @delivery_card.valid?
         expect(@delivery_card.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idが空では購入できない' do
+        @delivery_card.user_id = nil
+        @delivery_card.valid?
+        expect(@delivery_card.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では購入できない' do
+        @delivery_card.item_id = nil
+        @delivery_card.valid?
+        expect(@delivery_card.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
