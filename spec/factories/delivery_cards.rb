@@ -11,4 +11,3 @@ FactoryBot.define do
     item_id              { Faker::Number }
   end
 end
-
