@@ -1,29 +1,37 @@
-# README
+# アプリケーション名
+ FURIMA（フリマアプリ）
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーション概要
+ユーザーを登録すると商品を出品できます。自身が出品した商品は、編集と削除をすることができます。
+他のユーザーが出品した商品は、クレジットカードを用いて購入することができます。
 
-Things you may want to cover:
+# URL
+https://furima-38253.herokuapp.com/
 
-* Ruby version
+# テスト用アカウント
 
-* System dependencies
+- Basic認証
 
-* Configuration
+| ID       | pass    |
+| -------- | ------- | 
+| admin    | 2222    |
 
-* Database creation
+- テスト用アカウント
 
-* Database initialization
+| user     | email    | password     |
+| -------- | -------- | ------------ |
+| 出品者用  | 1@test   | test1111     |
+| 購入者用  | 2@test   | test2222     |
 
-* How to run the test suite
+- クレジットカード情報
 
-* Services (job queues, cache servers, search engines, etc.)
+| 番号               | 期限      | セキュリティコード  |
+| ----------------- | -------- | ---------------- |
+| 4242424242424242  | 12/44    | 123              |
 
-* Deployment instructions
 
-* ...
-
-# テーブル設計
+# データベース設計
+![](img/furima.svg)
 
 ## users テーブル
 
@@ -99,3 +107,29 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :order
+
+
+# 開発環境
+- フロントエンド
+
+&emsp; HTML, CSS
+
+- バックエンド
+
+&emsp; Ruby on Rails(Ruby)
+
+- インフラ
+
+&emsp; Heroku, AWS(S3)
+
+- OS
+
+&emsp; Mac/Linux
+
+- データベース
+
+&emsp; MySQL
+
+- タスク管理
+
+&emsp; Github
